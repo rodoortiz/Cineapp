@@ -12,6 +12,7 @@ class CandyTableViewController: UITableViewController {
     
     var itemsCandy = [ItemsCandy]()
     var pictures = [String]()
+    
     var candyTableViewCell: CandyTableViewCell!
     
     let photo1 = UIImage(named: "candy1")
@@ -28,9 +29,9 @@ class CandyTableViewController: UITableViewController {
         
         var tempCandy = [ItemsCandy]()
         
-        let candy1 = ItemsCandy(image: photo1!, candyName: "CarlosV", price: "$10.00")
+        let candy1 = ItemsCandy(image: photo1!, candyName: "CarlosV", price: "$8.00")
         let candy2 = ItemsCandy(image: photo2!, candyName: "Lucas", price: "$8.00")
-        let candy3 = ItemsCandy(image: photo3!, candyName: "Paleta", price: "$6.00")
+        let candy3 = ItemsCandy(image: photo3!, candyName: "Paleta", price: "$8.00")
         
         tempCandy.append(candy1)
         tempCandy.append(candy2)
@@ -54,14 +55,28 @@ class CandyTableViewController: UITableViewController {
         
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "pay") as? PayCandyViewController {
-            
-            vc.candyNumber = candyTableViewCell.add()
-            vc.candyName = itemsCandy[indexPath.row].candyName
-            vc.candyPrice = itemsCandy[indexPath.row].price
-            
-            navigationController?.pushViewController(vc, animated: true)
+        if let vc2 = storyboard?.instantiateViewController(withIdentifier: "pay") as? PayCandyViewController {
+
+            vc2.candyNumber = CandyTableViewCell.amountCandy
+            vc2.candyName = itemsCandy[indexPath.row].candyName
+            vc2.candyPrice = itemsCandy[indexPath.row].price
+            vc2.total = CandyTableViewCell.add()
+
+            navigationController?.pushViewController(vc2, animated: true)
         }
     }
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "payCandy") {
+//            var indexPath: IndexPath!
+//            let displayVC = segue.destination as! PayCandyViewController
+//
+//            displayVC.candyName = itemsCandy[indexPath.row].candyName
+//            displayVC.candyPrice = itemsCandy[indexPath.row].price
+//        }
+//    }
 }
+//

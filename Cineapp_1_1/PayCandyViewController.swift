@@ -15,19 +15,22 @@ class PayCandyViewController: UIViewController {
     @IBOutlet weak var priceCandy: UILabel!
     @IBOutlet weak var totalCandy: UILabel!
     
-    var candyNumber: String?
+    var candyNumber: Int?
     var candyName: String?
     var candyPrice: String?
+    var total: String?
     
     @IBAction func buy(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(candyNumber)
-        numberCandy.text = candyNumber
-        nameCandy.text = candyNumber
+        
+        numberCandy.text = String(candyNumber!)
+        nameCandy.text = candyName
         priceCandy.text = candyPrice
+        totalCandy.text = ("\(String(describing: total!)).00")
         // Do any additional setup after loading the view.
     }
     

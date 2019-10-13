@@ -16,18 +16,18 @@ class CandyTableViewCell: UITableViewCell {
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var numberCandy: UILabel!
     
-    var amountCandy = Int()
+    static var amountCandy = Int()
     
     @IBAction func valueCandy(_ sender: UIStepper) {
         numberCandy.text = Int(sender.value).description
-        amountCandy = Int(sender.value)
+        CandyTableViewCell.amountCandy = Int(sender.value)
+        print(CandyTableViewCell.amountCandy)
     }
     
-    func add() -> String {
-        amountCandy = (amountCandy) * 8
+    static func add() -> String {
+        CandyTableViewCell.amountCandy = (CandyTableViewCell.amountCandy) * 8
         
-        let amountCandyString = String(amountCandy)
-        print(amountCandyString)
+        let amountCandyString = String(CandyTableViewCell.amountCandy)
         return amountCandyString
     }
     
